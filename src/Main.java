@@ -4,11 +4,11 @@ public class Main {
     public static void main(String[] args) throws InterruptedException{
         System.out.println("Старт.");
         Cash cash = new Cash();
-        cashierDepositor first = new cashierDepositor(cash,"first");
-        cashierDepositor second = new cashierDepositor(cash,"second");
-        cashierDepositor third = new cashierDepositor(cash,"third");
-        cashierDrawer fourth = new cashierDrawer(cash,"fourth");
-        cashierDrawer fifth = new cashierDrawer(cash,"fifth");
+        cashierDepositor first = new cashierDepositor(cash,"Дима");
+        cashierDepositor second = new cashierDepositor(cash,"Катя");
+        cashierDepositor third = new cashierDepositor(cash,"Данил");
+        cashierDrawer fourth = new cashierDrawer(cash,"Ваня");
+        cashierDrawer fifth = new cashierDrawer(cash,"Аня");
         first.start();
         second.start();
         third.start();

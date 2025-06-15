@@ -24,7 +24,7 @@ public class cashierDepositor extends Thread {
     public void run() {
         depositList.stream().forEach(n -> {
             try {
-                balance.deposit(n);
+                balance.deposit(n, name);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }

@@ -11,32 +11,33 @@ public class Cash {
         return balance;
     }
 
-    public synchronized void deposit(int amount) throws InterruptedException {
+    public synchronized void deposit(int amount, String cashierName) throws InterruptedException {
         lock.lock();
         if (balance + amount < MAX_BALANCE) {
             balance += amount;
-            System.out.println("Внес " + amount + ". Баланс: " + balance);
+            System.out.println(cashierName + ": Внес " + amount + ". Баланс: " + balance);
             lock.unlock();
             notify();
         } else {
-            System.out.println("Касса переполнена, ожидаю...");
+            System.out.println(cashierName + ": Касса переполнена, ожидаю...");
             lock.unlock();
             wait();
-            deposit(amount);
+            deposit(amount, cashierName);
         }
     }
-    public synchronized void withDraw(int amount) throws InterruptedException {
+
+    public synchronized void withDraw(int amount, String cashierName) throws InterruptedException {
         lock.lock();
         if (balance - amount > MIN_BALANCE) {
             balance -= amount;
-            System.out.println("Выдал " + amount + ". Баланс: " + balance);
+            System.out.println(cashierName + ": Выдал " + amount + ". Баланс: " + balance);
             lock.unlock();
             notify();
         } else {
-            System.out.println("Недостаточно средств, ожидаю...");
+            System.out.println(cashierName + ": Недостаточно средств, ожидаю...");
             lock.unlock();
             wait();
-            withDraw(amount);
+            withDraw(amount, cashierName);
 
         }
     }

@@ -26,7 +26,7 @@ public class cashierDrawer extends Thread {
 
         drawList.stream().forEach(n -> {
             try {
-                balance.withDraw(n);
+                balance.withDraw(n, name);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
